@@ -8,6 +8,7 @@ arch-configure - Configure a newly installed Arch Linux system.
 
 SYNOPSIS
 --------
+
 *arch-configure*
 
 DESCRIPTION
