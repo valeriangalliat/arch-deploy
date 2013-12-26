@@ -66,7 +66,7 @@ finish() {
     chrootx passwd &&
     umount -R "$MNT" &&
     echo "# AUTORUN ARCH CONFIGURE" >> .profile &&
-    echo arch-deploy/bin/arch-configure >> .profile &&
+    echo sh-arch-deploy/bin/arch-configure >> .profile &&
     reboot
 }
 
