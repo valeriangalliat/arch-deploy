@@ -25,7 +25,7 @@ Examples
 For an example you can watch my `install` and `configure` scripts on
 [this repository](https://github.com/valeriangalliat/arch-deploy).
 
-The installation then takes a coupl of lines:
+Installation then down to:
 
 ```sh
 git clone "https://github.com/valeriangalliat/sh-arch-deploy.git"
