@@ -28,4 +28,4 @@ sed -i "/^# AUTORUN ARCH CONFIGURE$/,+1d" .profile
 [ wc -l < ~/.profile == 0 ] && rm .profile
 
 # Execute configure script
-. configure
+. ./configure
