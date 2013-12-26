@@ -1,17 +1,10 @@
-# New user
 declare NUSER=arch
 
-# Creates the new user.
-#
-# $@: Arguments for `useradd`
 nuser() {
     useradd "$@" "$NUSER" &&
     passwd "$NUSER"
 }
 
-# Installs given package from AUR (requires new user to be created).
-#
-# $1: Package name
 function aur {
     local package=$1; shift
     local dest=/tmp/$package.tar.gz
