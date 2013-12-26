@@ -36,11 +36,13 @@ aur() {
     rm  -R "/tmp/$package" "/tmp/$dest"
 }
 
-# Remove configure script from `.profile`
-sed -i "/^# AUTORUN ARCH CONFIGURE$/,+1d" .profile &&
+if [ -f .profile ]; then
+    # Remove configure script from `.profile`
+    sed -i "/^# AUTORUN ARCH CONFIGURE$/,+1d" .profile &&
 
-# Remove `.profile` if empty
-[ wc -l < ~/.profile == 0 ] && rm .profile &&
+    # Remove `.profile` if empty
+    [ wc -l < ~/.profile == 0 ] && rm .profile &&
+fi
 
 # Execute configure script
 . ./configure
