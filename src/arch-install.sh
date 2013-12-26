@@ -71,4 +71,4 @@ finish() {
 }
 
 # Execute install script
-. arch-installrc
+. install
