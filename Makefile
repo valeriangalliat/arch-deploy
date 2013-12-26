@@ -6,6 +6,7 @@ mandir = $(datarootdir)/man
 man1dir = $(mandir)/man1
 
 a2x = a2x
+asciidoc = asciidoc
 
 version = 1.0
 
@@ -14,7 +15,9 @@ all: \
 	bin/arch-configure \
 	bin/arch-install \
 	doc/arch-configure.1 \
-	doc/arch-install.1
+	doc/arch-install.1 \
+	doc/arch-configure.1.html \
+	doc/arch-install.1.html
 
 clean:
 	rm -fr \
@@ -48,3 +51,9 @@ doc/arch-configure.1: doc/arch-configure.1.txt
 
 doc/arch-install.1: doc/arch-install.1.txt
 	$(a2x) -f manpage --no-xmllint $<
+
+doc/arch-configure.1.html: doc/arch-configure.1.txt
+	$(asciidoc) $<
+
+doc/arch-install.1.html: doc/arch-install.1.txt
+	$(asciidoc) $<
