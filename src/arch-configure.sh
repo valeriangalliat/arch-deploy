@@ -5,7 +5,7 @@ nuser() {
     passwd "$NUSER"
 }
 
-function aur {
+aur() {
     local package=$1; shift
     local dest=/tmp/$package.tar.gz
 
