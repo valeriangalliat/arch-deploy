@@ -64,10 +64,10 @@ syslinuxi() {
 
 finish() {
     chrootx passwd &&
-    umount -R "$MNT" &&
     cp -R sh-arch-deploy configure "$MNT/root"
     echo "# AUTORUN ARCH CONFIGURE" >> "$MNT/root/.profile" &&
     echo sh-arch-deploy/bin/arch-configure >> "$MNT/root/.profile" &&
+    umount -R "$MNT" &&
     reboot
 }
 
