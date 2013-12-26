@@ -23,17 +23,17 @@ aur() {
     nuserx cd "/tmp/$package" \&\& makepkg -c &&
 
     # Install generate package
-    find "/tmp/$package" -name "*.tar.xz" -exec pacman -U {} +
+    find "/tmp/$package" -name "*.tar.xz" -exec pacman -U {} + &&
 
     # Cleanup
     rm  -R "/tmp/$package" "$dest"
 }
 
 # Remove configure script from `.profile`
-sed -i "/^# AUTORUN ARCH CONFIGURE$/,+1d" .profile
+sed -i "/^# AUTORUN ARCH CONFIGURE$/,+1d" .profile &&
 
 # Remove `.profile` if empty
-[ wc -l < ~/.profile == 0 ] && rm .profile
+[ wc -l < ~/.profile == 0 ] && rm .profile &&
 
 # Execute configure script
 . ./configure

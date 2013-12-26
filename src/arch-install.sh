@@ -18,7 +18,7 @@ mirrorlist() {
     fi
 
     # Uncomment server lines
-    sed -i "s/^#Server/Server/g" "$tmp"
+    sed -i "s/^#Server/Server/g" "$tmp" &&
 
     # Write new mirrorlist
     cat "$tmp" > /etc/pacman.d/mirrorlist
@@ -55,8 +55,8 @@ syslinuxi() {
     local disk=$1; shift
 
     # Install package and init
-    pacstrap "$MNT" syslinux
-    chrootx syslinux-install_update -aim
+    pacstrap "$MNT" syslinux &&
+    chrootx syslinux-install_update -aim &&
 
     # Change default disk to real disk
     sed -i "s/sda3/$disk/g" "$MNT/boot/syslinux/syslinux.cfg"
