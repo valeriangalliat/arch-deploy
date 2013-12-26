@@ -1,0 +1,7 @@
+ARCH-CONFIGURE(1)
+=================
+:doctype: manpage
+
+NAME
+----
+arch-configure - Test.

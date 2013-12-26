@@ -1,0 +1,7 @@
+ARCH-INSTALL(1)
+===============
+:doctype: manpage
+
+NAME
+----
+arch-install - Test.
