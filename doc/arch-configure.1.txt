@@ -14,7 +14,7 @@ DESCRIPTION
 -----------
 
 This command must be executed from the root's home directory, with a
-'arch-configurerc' file in it, executable by *sh*(1p).
+'configure' file in it, executable by *sh*(1p).
 
 Usualy *arch-configure*(1) is automatically executed by *arch-install*(1)
 after a system reboot, and will try to remove its execution line from
@@ -47,7 +47,7 @@ FUNCTIONS
 EXAMPLES
 --------
 
-Watch my 'arch-configurerc' file <<https://github.com/valeriangalliat/arch-deployrc/blob/master/arch-configurerc>>
+Watch my 'configure' file <<https://github.com/valeriangalliat/arch/blob/master/configure>>
 for example.
 
 SEE ALSO
