@@ -6,25 +6,32 @@ nuser() {
 }
 
 nuserx() {
-    su - "$NUSER" -c "\"\$0\" \"\$@\"" -- "$@"
+    su "$NUSER" -c "\"\$0\" \"\$@\"" -- "$@"
 }
 
 aur() {
     local package=$1; shift
-    local dest=/tmp/$package.tar.gz
+    local dest=$package.tar.gz
+    local dir=$(pwd)
+
+    cd /tmp &&
 
     # Download and extract package
     nuserx curl -o "$dest" "https://aur.archlinux.org/packages/${package:0:2}/$package/$package.tar.gz" &&
-    nuserx cd /tmp \&\& tar xf "$dest" &&
+    nuserx tar xf "$dest" &&
 
     # Build package (and clean)
-    nuserx cd "/tmp/$package" \&\& makepkg -c &&
+    cd "$package" &&
+    nuserx makepkg -c &&
 
     # Install generate package
-    find "/tmp/$package" -name "*.tar.xz" -exec pacman -U {} + &&
+    find . -name "*.tar.xz" -exec pacman -U {} + &&
+
+    # Restore current directory
+    cd "$dir"
 
     # Cleanup
-    rm  -R "/tmp/$package" "$dest"
+    rm  -R "/tmp/$package" "/tmp/$dest"
 }
 
 # Remove configure script from `.profile`
