@@ -34,11 +34,11 @@ arch-install \- Install an Arch Linux system from the bootable media\&.
 \fBarch\-install\fR
 .SH "DESCRIPTION"
 .sp
-This command must be executed from the root\(cqs home directory, with an \fIinstall\fR and \fIconfigure\fR file in it\&.
+This command must be executed from the root\(cqs home directory, with an \fIarch\-installrc\fR and \fIarch\-configurerc\fR file in it\&.
 .sp
 The both files are meant to be executed by \fBsh\fR(1p)\&.
 .sp
-\fBarch\-install\fR(1) provides a set of helper variables and functions that can be used in the \fIinstall\fR script\&.
+\fBarch\-install\fR(1) provides a set of helper variables and functions that can be used in the \fIarch\-installrc\fR script\&.
 .SH "VARIABLES"
 .PP
 \fI$MNT\fR
@@ -130,7 +130,7 @@ and reboots\&.
 .RE
 .SH "EXAMPLES"
 .sp
-Watch my \fIinstall\fR file <https://github\&.com/valeriangalliat/arch\-deploy/blob/master/install> for example\&.
+Watch my \fIinstall\fR file <https://github\&.com/valeriangalliat/arch\-deployrc/blob/master/arch\-installrc> for example\&.
 .SH "SEE ALSO"
 .sp
 \fBarch\-configure\fR(1), \fBarch\-chroot\fR, <https://www\&.archlinux\&.org/mirrorlist/>, \fBpacstrap\fR, \fBgenfstab\fR, \fBlocale\-gen\fR, \fBmkinitcpio\fR(8), \fBsyslinux\fR(1), \fBsyslinux\-install_update\fR\&.

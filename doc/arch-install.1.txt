@@ -15,12 +15,12 @@ DESCRIPTION
 -----------
 
 This command must be executed from the root's home directory, with an
-'install' and 'configure' file in it.
+'arch-installrc' and 'arch-configurerc' file in it.
 
 The both files are meant to be executed by *sh*(1p).
 
 *arch-install*(1) provides a set of helper variables and functions that can
-be used in the 'install' script.
+be used in the 'arch-installrc' script.
 
 VARIABLES
 ---------
@@ -78,7 +78,7 @@ FUNCTIONS
 EXAMPLES
 --------
 
-Watch my 'install' file <<https://github.com/valeriangalliat/arch-deploy/blob/master/install>>
+Watch my 'install' file <<https://github.com/valeriangalliat/arch-deployrc/blob/master/arch-installrc>>
 for example.
 
 SEE ALSO
