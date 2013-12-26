@@ -32,5 +32,5 @@ pacman -Sy git
 git clone "https://github.com/valeriangalliat/sh-arch-deploy.git"
 git clone "https://github.com/valeriangalliat/arch.git"
 mv arch/install arch/configure .
-sh-arch-deploy/bin/install
+sh-arch-deploy/bin/arch-install
 ```
