@@ -28,6 +28,7 @@ on [this repository](https://github.com/valeriangalliat/arch).
 Installation then down to:
 
 ```sh
+pacman -Sy git
 git clone "https://github.com/valeriangalliat/sh-arch-deploy.git"
 git clone "https://github.com/valeriangalliat/arch.git"
 mv arch/install arch/configure .
