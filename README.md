@@ -27,9 +27,9 @@ For an example you can watch my `install` and `configure` scripts on
 
 The installation then takes a coupl of lines:
 
-```bash
-git clone https://github.com/valeriangalliat/sh-arch-deploy.git
-git clone https://github.com/valeriangalliat/arch-deploy.git
+```sh
+git clone "https://github.com/valeriangalliat/sh-arch-deploy.git"
+git clone "https://github.com/valeriangalliat/arch-deploy.git"
 mv arch-deploy/install arch-deploy/configure .
 sh-arch-deploy/bin/install
 ```
