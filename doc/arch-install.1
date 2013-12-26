@@ -28,4 +28,109 @@
 .\" * MAIN CONTENT STARTS HERE *
 .\" -----------------------------------------------------------------
 .SH "NAME"
-arch-install \- Test\&.
+arch-install \- Install an Arch Linux system from the bootable media\&.
+.SH "SYNOPSIS"
+.sp
+\fBarch\-install\fR
+.SH "DESCRIPTION"
+.sp
+This command must be executed from the root\(cqs home directory, with an \fIinstall\fR and \fIconfigure\fR file in it\&.
+.sp
+The both files are meant to be executed by \fBsh\fR(1p)\&.
+.sp
+\fBarch\-install\fR(1) provides a set of helper variables and functions that can be used in the \fIinstall\fR script\&.
+.SH "VARIABLES"
+.PP
+\fI$MNT\fR
+.RS 4
+The mountpoint where to install the system\&. Defaults to
+\fI/mnt\fR\&.
+.RE
+.SH "FUNCTIONS"
+.PP
+\fBchrootx\fR
+.RS 4
+Executes a command in chroot\&.
+.PP
+\fI$@\fR
+.RS 4
+Arguments for
+\fBarch\-chroot\fR\&.
+.RE
+.RE
+.PP
+\fBmirrorlist\fR
+.RS 4
+Retrieves a mirrorlist in
+\fI/etc/pacman\&.d/mirrorlist\fR
+for given country code\&.
+.PP
+\fI$1\fR
+.RS 4
+Country code (\(oqUS\(cq, \(oqGB\(cq, \(oqFR\(cq, etc)\&.
+.RE
+.RE
+.PP
+\fBbootstrap\fR
+.RS 4
+Bootstraps the system in mountpoint\&. The packages
+\fIbase\fR
+and
+\fIbase\-devel\fR
+are always installed\&.
+.PP
+\fI$@\fR
+.RS 4
+Additional arguments for
+\fBpacstrap\fR\&.
+.RE
+.RE
+.PP
+\fBfstab\fR
+.RS 4
+Generates the fstab in mountpoint\&.
+.PP
+\fI$@\fR
+.RS 4
+Arguments for
+\fBgenfstab\fR\&.
+.RE
+.RE
+.PP
+\fBlocale\fR
+.RS 4
+Generates given locale in mountpoint\&.
+.PP
+\fI$1\fR
+.RS 4
+Locale (\(oqen_US\(cq, \(oqen_US\&.UTF\-8\(cq, etc)\&.
+.RE
+.RE
+.PP
+\fBlinux\fR
+.RS 4
+Creates initial RAM disk for Linux\&.
+.RE
+.PP
+\fBsyslinuxi\fR
+.RS 4
+Installs Syslinux in mointpoint\&.
+.PP
+\fI$1\fR
+.RS 4
+Disk to boot (\(oqsda1\(cq, \(oqsda2\(cq, etc)\&.
+.RE
+.RE
+.PP
+\fBfinish\fR
+.RS 4
+Prompts for root password, unmount mountpoint recursively, appends configure script to root\(cqs
+\fI\&.profile\fR
+and reboots\&.
+.RE
+.SH "EXAMPLES"
+.sp
+Watch my \fIinstall\fR file <https://github\&.com/valeriangalliat/arch\-deploy/blob/master/install> for example\&.
+.SH "SEE ALSO"
+.sp
+\fBarch\-configure\fR(1), \fBarch\-chroot\fR, <https://www\&.archlinux\&.org/mirrorlist/>, \fBpacstrap\fR, \fBgenfstab\fR, \fBlocale\-gen\fR, \fBmkinitcpio\fR(8), \fBsyslinux\fR(1), \fBsyslinux\-install_update\fR\&.

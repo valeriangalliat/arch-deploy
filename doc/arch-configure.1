@@ -28,4 +28,48 @@
 .\" * MAIN CONTENT STARTS HERE *
 .\" -----------------------------------------------------------------
 .SH "NAME"
-arch-configure \- Test\&.
+arch-configure \- Configure a newly installed Arch Linux system\&.
+.SH "SYNOPSIS"
+.sp
+\fBarch\-configure\fR
+.SH "DESCRIPTION"
+.sp
+This command must be executed from the root\(cqs home directory, with a \fIconfigure\fR file in it executable by \fBsh\fR(1p)\&.
+.sp
+Usualy \fBarch\-configure\fR(1) is automatically executed by \fBarch\-install\fR(1) after a system reboot, and will try to remove its execution line from \fI\&.profile\fR file\&.
+.sp
+\fBarch\-configure\fR(1) provides a set of helper variables and functions that can be used in the \fIconfigure\fR script\&.
+.SH "VARIABLES"
+.PP
+\fI$NUSER\fR
+.RS 4
+The new user to create (that will be used for AUR install for example)\&.
+.RE
+.SH "FUNCTIONS"
+.PP
+\fBnuser\fR
+.RS 4
+Creates the new user\&.
+.PP
+\fI$@\fR
+.RS 4
+Arguments for
+\fBuseradd\fR(8)\&.
+.RE
+.RE
+.PP
+\fBaur\fR
+.RS 4
+Installs given package from AUR (requires new user to be created)\&.
+.PP
+\fI$1\fR
+.RS 4
+Package name\&.
+.RE
+.RE
+.SH "EXAMPLES"
+.sp
+Watch my \fIconfigure\fR file <https://github\&.com/valeriangalliat/arch\-deploy/blob/master/configure> for example\&.
+.SH "SEE ALSO"
+.sp
+\fBarch\-install\fR(1), \fBuseradd\fR(8), <https://aur\&.archlinux\&.org/>\&.
