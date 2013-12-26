@@ -39,7 +39,7 @@ if [ -f .profile ]; then
     sed -i "/^# AUTORUN ARCH CONFIGURE$/,+1d" .profile &&
 
     # Remove `.profile` if empty
-    [ wc -l < ~/.profile == 0 ] && rm .profile &&
+    [ wc -l < ~/.profile == 0 ] && rm .profile
 fi
 
 # Execute configure script
