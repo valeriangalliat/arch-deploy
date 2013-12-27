@@ -1,10 +1,3 @@
-prefix = /usr/local
-exec_prefix = $(prefix)
-bindir = $(exec_prefix)/bin
-datarootdir = $(prefix)/share
-mandir = $(datarootdir)/man
-man1dir = $(mandir)/man1
-
 a2x = a2x
 asciidoc = asciidoc
 
