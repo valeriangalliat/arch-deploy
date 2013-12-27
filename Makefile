@@ -17,6 +17,8 @@ clean:
 		bin \
 		doc/arch-configure.1 \
 		doc/arch-install.1 \
+		doc/arch-configure.1.html \
+		doc/arch-install.1.html \
 		arch-deploy-$(version).tar.gz
 
 dist: doc src LICENSE Makefile README.md
