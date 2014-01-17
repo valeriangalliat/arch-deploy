@@ -19,11 +19,10 @@ installation and configuration process.
 All the available functions and their arguments are documented into the `doc`
 directory.
 
-Examples
---------
+Example
+-------
 
-For an example you can watch my `install` and `configure` scripts
-on [this repository](https://github.com/valeriangalliat/arch).
+You can watch my `install` and `configure` scripts on [this repository](https://github.com/valeriangalliat/arch).
 
 Installation then down to:
 
