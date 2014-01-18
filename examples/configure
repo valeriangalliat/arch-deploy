@@ -11,7 +11,7 @@ cleanconfigure
 
 # DHCP
 systemctl enable dhcpcd
-systemctl start dhcpcd
+dhcpcd
 
 # Hostname
 hostnamectl set-hostname arch
