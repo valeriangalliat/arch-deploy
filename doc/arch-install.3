@@ -2,12 +2,12 @@
 .\"     Title: arch-install
 .\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
 .\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
-.\"      Date: 12/26/2013
+.\"      Date: 01/18/2014
 .\"    Manual: \ \&
 .\"    Source: \ \&
 .\"  Language: English
 .\"
-.TH "ARCH\-INSTALL" "1" "12/26/2013" "\ \&" "\ \&"
+.TH "ARCH\-INSTALL" "3" "01/18/2014" "\ \&" "\ \&"
 .\" -----------------------------------------------------------------
 .\" * Define some portability stuff
 .\" -----------------------------------------------------------------
@@ -29,16 +29,6 @@
 .\" -----------------------------------------------------------------
 .SH "NAME"
 arch-install \- Install an Arch Linux system from the bootable media\&.
-.SH "SYNOPSIS"
-.sp
-\fBarch\-install\fR
-.SH "DESCRIPTION"
-.sp
-This command must be executed from the root\(cqs home directory, with an \fIinstall\fR and \fIconfigure\fR file in it\&.
-.sp
-The both files are meant to be executed by \fBsh\fR(1p)\&.
-.sp
-\fBarch\-install\fR(1) provides a set of helper variables and functions that can be used in the \fIinstall\fR script\&.
 .SH "VARIABLES"
 .PP
 \fI$MNT\fR
@@ -73,15 +63,11 @@ Country code (\(oqUS\(cq, \(oqGB\(cq, \(oqFR\(cq, etc)\&.
 .PP
 \fBbootstrap\fR
 .RS 4
-Bootstraps the system in mountpoint\&. The packages
-\fIbase\fR
-and
-\fIbase\-devel\fR
-are always installed\&.
+Bootstraps the system in mountpoint\&.
 .PP
 \fI$@\fR
 .RS 4
-Additional arguments for
+Packages to install with for
 \fBpacstrap\fR\&.
 .RE
 .RE
@@ -118,19 +104,21 @@ Installs Syslinux in mointpoint\&.
 .PP
 \fI$1\fR
 .RS 4
-Disk to boot (\(oqsda1\(cq, \(oqsda2\(cq, etc)\&.
+Disk to install the bootloader on (\(oqsda1\(cq, \(oqsda2\(cq, etc)\&.
 .RE
+.RE
+.PP
+\fBautoconfigure\fR
+.RS 4
+Adds the configure script in
+\fI/root/\&.profile\fR
+to autorun it at next login\&.
 .RE
 .PP
 \fBfinish\fR
 .RS 4
-Prompts for root password, unmount mountpoint recursively, appends configure script to root\(cqs
-\fI\&.profile\fR
-and reboots\&.
+Prompts for root password, unmount mountpoint recursively and reboots\&.
 .RE
-.SH "EXAMPLES"
-.sp
-Watch my \fIinstall\fR file <https://github\&.com/valeriangalliat/arch/blob/master/install> for example\&.
 .SH "SEE ALSO"
 .sp
-\fBarch\-configure\fR(1), \fBarch\-chroot\fR, <https://www\&.archlinux\&.org/mirrorlist/>, \fBpacstrap\fR, \fBgenfstab\fR, \fBlocale\-gen\fR, \fBmkinitcpio\fR(8), \fBsyslinux\fR(1), \fBsyslinux\-install_update\fR\&.
+\fBarch\-configure\fR(1), \fBarch\-chroot\fR, https://www\&.archlinux\&.org/mirrorlist/, \fBpacstrap\fR, \fBgenfstab\fR, \fBlocale\-gen\fR, \fBmkinitcpio\fR(8), \fBsyslinux\fR(1), \fBsyslinux\-install_update\fR\&.

@@ -1,26 +1,10 @@
-ARCH-INSTALL(1)
+ARCH-INSTALL(3)
 ===============
 
 NAME
 ----
 
 arch-install - Install an Arch Linux system from the bootable media.
-
-SYNOPSIS
---------
-
-*arch-install*
-
-DESCRIPTION
------------
-
-This command must be executed from the root's home directory, with an
-'install' and 'configure' file in it.
-
-The both files are meant to be executed by *sh*(1p).
-
-*arch-install*(1) provides a set of helper variables and functions that can
-be used in the 'install' script.
 
 VARIABLES
 ---------
@@ -44,11 +28,10 @@ FUNCTIONS
         Country code (`US', `GB', `FR', etc).
 
 *bootstrap*::
-    Bootstraps the system in mountpoint. The packages 'base' and 'base-devel'
-    are always installed.
+    Bootstraps the system in mountpoint.
 
     '$@';;
-        Additional arguments for *pacstrap*.
+        Packages to install with for *pacstrap*.
 
 *fstab*::
     Generates the fstab in mountpoint.
@@ -69,21 +52,19 @@ FUNCTIONS
     Installs Syslinux in mointpoint.
 
     '$1';;
-        Disk to boot (`sda1', `sda2', etc).
+        Disk to install the bootloader on (`sda1', `sda2', etc).
+
+
+*autoconfigure*::
+    Adds the configure script in '/root/.profile' to autorun it at next login.
+
 
 *finish*::
-    Prompts for root password, unmount mountpoint recursively, appends
-    configure script to root's '.profile' and reboots.
-
-EXAMPLES
---------
-
-Watch my 'install' file <<https://github.com/valeriangalliat/arch/blob/master/install>>
-for example.
+    Prompts for root password, unmount mountpoint recursively and reboots.
 
 SEE ALSO
 --------
 
-*arch-configure*(1), *arch-chroot*, <<https://www.archlinux.org/mirrorlist/>>,
+*arch-configure*(1), *arch-chroot*, <https://www.archlinux.org/mirrorlist/>,
 *pacstrap*, *genfstab*, *locale-gen*, *mkinitcpio*(8), *syslinux*(1),
 *syslinux-install_update*.

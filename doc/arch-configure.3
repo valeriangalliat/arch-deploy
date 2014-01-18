@@ -2,12 +2,12 @@
 .\"     Title: arch-configure
 .\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
 .\" Generator: DocBook XSL Stylesheets v1.78.1 <http://docbook.sf.net/>
-.\"      Date: 12/26/2013
+.\"      Date: 01/18/2014
 .\"    Manual: \ \&
 .\"    Source: \ \&
 .\"  Language: English
 .\"
-.TH "ARCH\-CONFIGURE" "1" "12/26/2013" "\ \&" "\ \&"
+.TH "ARCH\-CONFIGURE" "3" "01/18/2014" "\ \&" "\ \&"
 .\" -----------------------------------------------------------------
 .\" * Define some portability stuff
 .\" -----------------------------------------------------------------
@@ -29,16 +29,6 @@
 .\" -----------------------------------------------------------------
 .SH "NAME"
 arch-configure \- Configure a newly installed Arch Linux system\&.
-.SH "SYNOPSIS"
-.sp
-\fBarch\-configure\fR
-.SH "DESCRIPTION"
-.sp
-This command must be executed from the root\(cqs home directory, with a \fIconfigure\fR file in it, executable by \fBsh\fR(1p)\&.
-.sp
-Usualy \fBarch\-configure\fR(1) is automatically executed by \fBarch\-install\fR(1) after a system reboot, and will try to remove its execution line from \fI\&.profile\fR file\&.
-.sp
-\fBarch\-configure\fR(1) provides a set of helper variables and functions that can be used in the \fIconfigure\fR script\&.
 .SH "VARIABLES"
 .PP
 \fI$NUSER\fR
@@ -46,6 +36,12 @@ Usualy \fBarch\-configure\fR(1) is automatically executed by \fBarch\-install\fR
 The new user to create (that will be used for AUR install for example)\&.
 .RE
 .SH "FUNCTIONS"
+.PP
+\fBcleanconfigure\fR
+.RS 4
+Cleans the autorun script in
+\fI/root/\&.profile\fR\&. If the file is empty after removing the autorun script, it will be removed\&.
+.RE
 .PP
 \fBnuser\fR
 .RS 4
@@ -78,9 +74,6 @@ Installs given package from AUR (requires new user to be created)\&.
 Package name\&.
 .RE
 .RE
-.SH "EXAMPLES"
-.sp
-Watch my \fIconfigure\fR file <https://github\&.com/valeriangalliat/arch/blob/master/configure> for example\&.
 .SH "SEE ALSO"
 .sp
-\fBarch\-install\fR(1), \fBuseradd\fR(8), \fBsu\fR(1) <https://aur\&.archlinux\&.org/>\&.
+\fBarch\-install\fR(1), \fBuseradd\fR(8), \fBsu\fR(1), https://aur\&.archlinux\&.org/\&.

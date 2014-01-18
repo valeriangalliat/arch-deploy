@@ -1,29 +1,19 @@
 a2x = a2x
 asciidoc = asciidoc
 
-all: \
-	doc/arch-configure.1 \
-	doc/arch-install.1 \
-	doc/arch-configure.1.html \
-	doc/arch-install.1.html
+txts=$(wildcard doc/*.txt)
+htmls=$(txts:.txt=.html)
+manpages=$(txts:.txt=)
+
+all: $(htmls) $(manpages)
 
 clean:
-	rm  \
-		doc/arch-configure.1 \
-		doc/arch-install.1 \
-		doc/arch-configure.1.html \
-		doc/arch-install.1.html
+	rm $(htmls) $(manpages)
 
 .PHONY: all clean
 
-doc/arch-configure.1: doc/arch-configure.1.txt
-	$(a2x) -f manpage --no-xmllint $<
+$(htmls): $(txts)
+	$(foreach f,$^,$(asciidoc) $(f);)
 
-doc/arch-install.1: doc/arch-install.1.txt
-	$(a2x) -f manpage --no-xmllint $<
-
-doc/arch-configure.1.html: doc/arch-configure.1.txt
-	$(asciidoc) $<
-
-doc/arch-install.1.html: doc/arch-install.1.txt
-	$(asciidoc) $<
+$(manpages): $(txts)
+	$(foreach f,$^,$(a2x) -f manpage --no-xmllint $(f);)

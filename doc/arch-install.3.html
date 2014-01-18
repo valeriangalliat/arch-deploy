@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.6.9" />
-<title>ARCH-CONFIGURE(1)</title>
+<meta name="generator" content="AsciiDoc 8.6.7" />
+<title>ARCH-INSTALL(3)</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -87,15 +87,9 @@ ul, ol, li > p {
 ul > li     { color: #aaa; }
 ul > li > * { color: black; }
 
-.monospaced, code, pre {
-  font-family: "Courier New", Courier, monospace;
-  font-size: inherit;
-  color: navy;
+pre {
   padding: 0;
   margin: 0;
-}
-pre {
-  white-space: pre-wrap;
 }
 
 #author {
@@ -225,7 +219,7 @@ div.exampleblock > div.content {
 }
 
 div.imageblock div.content { padding-left: 0; }
-span.image img { border-style: none; vertical-align: text-bottom; }
+span.image img { border-style: none; }
 a.image:visited { color: white; }
 
 dl {
@@ -421,6 +415,12 @@ div.unbreakable { page-break-inside: avoid; }
  *
  * */
 
+tt {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+}
+
 div.tableblock {
   margin-top: 1.0em;
   margin-bottom: 1.5em;
@@ -453,6 +453,12 @@ div.tableblock > table[frame="vsides"] {
  * html5 specific
  *
  * */
+
+.monospaced {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+}
 
 table.tableblock {
   margin-top: 1.0em;
@@ -533,8 +539,6 @@ body.manpage div.sectionbody {
 @media print {
   body.manpage div#toc { display: none; }
 }
-
-
 </style>
 <script type="text/javascript">
 /*<![CDATA[*/
@@ -733,31 +737,13 @@ asciidoc.install();
 </head>
 <body class="article">
 <div id="header">
-<h1>ARCH-CONFIGURE(1)</h1>
+<h1>ARCH-INSTALL(3)</h1>
 </div>
 <div id="content">
 <div class="sect1">
 <h2 id="_name">NAME</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>arch-configure - Configure a newly installed Arch Linux system.</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_synopsis">SYNOPSIS</h2>
-<div class="sectionbody">
-<div class="paragraph"><p><strong>arch-configure</strong></p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_description">DESCRIPTION</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>This command must be executed from the root&#8217;s home directory, with a
-<em>configure</em> file in it, executable by <strong>sh</strong>(1p).</p></div>
-<div class="paragraph"><p>Usualy <strong>arch-configure</strong>(1) is automatically executed by <strong>arch-install</strong>(1)
-after a system reboot, and will try to remove its execution line from
-<em>.profile</em> file.</p></div>
-<div class="paragraph"><p><strong>arch-configure</strong>(1) provides a set of helper variables and functions that can
-be used in the <em>configure</em> script.</p></div>
+<div class="paragraph"><p>arch-install - Install an Arch Linux system from the bootable media.</p></div>
 </div>
 </div>
 <div class="sect1">
@@ -765,11 +751,11 @@ be used in the <em>configure</em> script.</p></div>
 <div class="sectionbody">
 <div class="dlist"><dl>
 <dt class="hdlist1">
-<em>$NUSER</em>
+<em>$MNT</em>
 </dt>
 <dd>
 <p>
-    The new user to create (that will be used for AUR install for example).
+    The mountpoint where to install the system. Defaults to <em>/mnt</em>.
 </p>
 </dd>
 </dl></div>
@@ -780,11 +766,11 @@ be used in the <em>configure</em> script.</p></div>
 <div class="sectionbody">
 <div class="dlist"><dl>
 <dt class="hdlist1">
-<strong>nuser</strong>
+<strong>chrootx</strong>
 </dt>
 <dd>
 <p>
-    Creates the new user.
+    Executes a command in chroot.
 </p>
 <div class="dlist"><dl>
 <dt class="hdlist1">
@@ -792,35 +778,17 @@ be used in the <em>configure</em> script.</p></div>
 </dt>
 <dd>
 <p>
-        Arguments for <strong>useradd</strong>(8).
+        Arguments for <strong>arch-chroot</strong>.
 </p>
 </dd>
 </dl></div>
 </dd>
 <dt class="hdlist1">
-<strong>nuserx</strong>
+<strong>mirrorlist</strong>
 </dt>
 <dd>
 <p>
-    Executes a command as new user.
-</p>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<em>$@</em>
-</dt>
-<dd>
-<p>
-        Arguments for <strong>su</strong>(1) (will be escaped properly).
-</p>
-</dd>
-</dl></div>
-</dd>
-<dt class="hdlist1">
-<strong>aur</strong>
-</dt>
-<dd>
-<p>
-    Installs given package from AUR (requires new user to be created).
+    Retrieves a mirrorlist in <em>/etc/pacman.d/mirrorlist</em> for given country code.
 </p>
 <div class="dlist"><dl>
 <dt class="hdlist1">
@@ -828,32 +796,123 @@ be used in the <em>configure</em> script.</p></div>
 </dt>
 <dd>
 <p>
-        Package name.
+        Country code (&#8216;US&#8217;, &#8216;GB&#8217;, &#8216;FR&#8217;, etc).
 </p>
 </dd>
 </dl></div>
 </dd>
+<dt class="hdlist1">
+<strong>bootstrap</strong>
+</dt>
+<dd>
+<p>
+    Bootstraps the system in mountpoint.
+</p>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+<em>$@</em>
+</dt>
+<dd>
+<p>
+        Packages to install with for <strong>pacstrap</strong>.
+</p>
+</dd>
 </dl></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_examples">EXAMPLES</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Watch my <em>configure</em> file &lt;<a href="https://github.com/valeriangalliat/arch/blob/master/configure">https://github.com/valeriangalliat/arch/blob/master/configure</a>&gt;
-for example.</p></div>
+</dd>
+<dt class="hdlist1">
+<strong>fstab</strong>
+</dt>
+<dd>
+<p>
+    Generates the fstab in mountpoint.
+</p>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+<em>$@</em>
+</dt>
+<dd>
+<p>
+        Arguments for <strong>genfstab</strong>.
+</p>
+</dd>
+</dl></div>
+</dd>
+<dt class="hdlist1">
+<strong>locale</strong>
+</dt>
+<dd>
+<p>
+    Generates given locale in mountpoint.
+</p>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+<em>$1</em>
+</dt>
+<dd>
+<p>
+        Locale (&#8216;en_US&#8217;, &#8216;en_US.UTF-8&#8217;, etc).
+</p>
+</dd>
+</dl></div>
+</dd>
+<dt class="hdlist1">
+<strong>linux</strong>
+</dt>
+<dd>
+<p>
+    Creates initial RAM disk for Linux.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>syslinuxi</strong>
+</dt>
+<dd>
+<p>
+    Installs Syslinux in mointpoint.
+</p>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+<em>$1</em>
+</dt>
+<dd>
+<p>
+        Disk to install the bootloader on (&#8216;sda1&#8217;, &#8216;sda2&#8217;, etc).
+</p>
+</dd>
+</dl></div>
+</dd>
+<dt class="hdlist1">
+<strong>autoconfigure</strong>
+</dt>
+<dd>
+<p>
+    Adds the configure script in <em>/root/.profile</em> to autorun it at next login.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>finish</strong>
+</dt>
+<dd>
+<p>
+    Prompts for root password, unmount mountpoint recursively and reboots.
+</p>
+</dd>
+</dl></div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_see_also">SEE ALSO</h2>
 <div class="sectionbody">
-<div class="paragraph"><p><strong>arch-install</strong>(1), <strong>useradd</strong>(8), <strong>su</strong>(1) &lt;<a href="https://aur.archlinux.org/">https://aur.archlinux.org/</a>&gt;.</p></div>
+<div class="paragraph"><p><strong>arch-configure</strong>(1), <strong>arch-chroot</strong>, <a href="https://www.archlinux.org/mirrorlist/">https://www.archlinux.org/mirrorlist/</a>,
+<strong>pacstrap</strong>, <strong>genfstab</strong>, <strong>locale-gen</strong>, <strong>mkinitcpio</strong>(8), <strong>syslinux</strong>(1),
+<strong>syslinux-install_update</strong>.</p></div>
 </div>
 </div>
 </div>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2013-12-26 18:45:54 CET
+Last updated 2014-01-18 17:29:10 CET
 </div>
 </div>
 </body>
