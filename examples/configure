@@ -4,7 +4,7 @@ set -e
 
 . "$(dirname "$0")/../arch-configure.sh"
 
-NUSER=valerian
+NUSER=arch
 
 # Clean configure autorun
 cleanconfigure
