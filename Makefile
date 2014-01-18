@@ -1,45 +1,20 @@
 a2x = a2x
 asciidoc = asciidoc
 
-version = 1.0
-
 all: \
-	bin \
-	bin/arch-configure \
-	bin/arch-install \
 	doc/arch-configure.1 \
 	doc/arch-install.1 \
 	doc/arch-configure.1.html \
 	doc/arch-install.1.html
 
 clean:
-	rm -fr \
-		bin \
+	rm  \
 		doc/arch-configure.1 \
 		doc/arch-install.1 \
 		doc/arch-configure.1.html \
-		doc/arch-install.1.html \
-		arch-deploy-$(version).tar.gz
+		doc/arch-install.1.html
 
-dist: doc src LICENSE Makefile README.md
-	tar czf arch-deploy-$(version).tar.gz $?
-
-.PHONY: all clean dist
-
-bin:
-	mkdir $@
-
-bin/arch-configure: src/arch-configure.sh
-	echo "#!$$(which sh)" > $@
-	echo >> $@
-	cat $< >> $@
-	chmod +x $@
-
-bin/arch-install: src/arch-install.sh
-	echo "#!$$(which sh)" > $@
-	echo >> $@
-	cat $< >> $@
-	chmod +x $@
+.PHONY: all clean
 
 doc/arch-configure.1: doc/arch-configure.1.txt
 	$(a2x) -f manpage --no-xmllint $<

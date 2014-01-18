@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+
+set -e
+
+. ../arch-configure.sh
+
+NUSER=valerian
+
+# Clean configure autorun
+cleanconfigure
+
+# DHCP
+systemctl enable dhcpcd
+systemctl start dhcpcd
+
+# Hostname
+hostnamectl set-hostname arch
+
+# Locale
+localectl set-keymap fr
+localectl set-locale LANG=en_US.UTF-8
+
+# Time
+timedatectl set-timezone Europe/Paris
+
+# NTP
+pacman -S ntp
+timedatectl set-ntp 1
+
+# User with home
+nuser -m
+
+# Yaourt
+pacman -S yajl
+aur package-query
+aur yaourt

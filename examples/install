@@ -1,0 +1,38 @@
+#!/usr/bin/env sh
+
+set -e
+
+. ../arch-install.sh
+
+# Disk setup
+fdisk /dev/sda
+mkfs.ext4 /dev/sda1
+e2label /dev/sda1 arch
+mount /dev/sda1 "$MNT"
+
+# Mirrorlist
+mirrorlist FR
+
+# Install base system
+bootstrap
+
+# Make fstab with labels
+fstab -L
+
+# Locale
+locale en_US.UTF-8
+
+# RAM disk
+linux
+
+# Install bootloader
+syslinuxi sda1
+
+# Copy program directory
+cp -R .. "$MNT/root/arch-deploy"
+
+# Autorun configure after reboot
+autoconfigure "arch-deploy/examples/configure"
+
+# Finish install
+finish
