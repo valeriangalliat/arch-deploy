@@ -29,7 +29,7 @@ linux
 syslinuxi sda1
 
 # Copy program directory
-cp -R .. "$MNT/root/arch-deploy"
+cp -R "$(dirname "$0")/.." "$MNT/root/arch-deploy"
 
 # Autorun configure after reboot
 autoconfigure "arch-deploy/examples/configure"
