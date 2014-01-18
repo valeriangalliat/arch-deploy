@@ -25,7 +25,7 @@ mirrorlist() {
 }
 
 bootstrap() {
-    pacstrap "$MNT" base base-devel "$@"
+    pacstrap "$MNT" "$@"
 }
 
 fstab() {

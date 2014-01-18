@@ -14,7 +14,7 @@ mount /dev/sda1 "$MNT"
 mirrorlist FR
 
 # Install base system
-bootstrap
+bootstrap base base-devel
 
 # Make fstab with labels
 fstab -L
