@@ -2,7 +2,7 @@
 
 set -e
 
-. ../arch-install.sh
+. "$(dirname "$0")/../arch-install.sh"
 
 # Disk setup
 fdisk /dev/sda

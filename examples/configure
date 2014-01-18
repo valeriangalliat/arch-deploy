@@ -2,7 +2,7 @@
 
 set -e
 
-. ../arch-configure.sh
+. "$(dirname "$0")/../arch-configure.sh"
 
 NUSER=valerian
 

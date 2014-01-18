@@ -7,7 +7,7 @@ cleanconfigure() {
     sed -i "/^# AUTORUN ARCH CONFIGURE$/,+1d" /root/.profile
 
     # Remove file if empty
-    [ wc -l < /root/.profile == 0 ] && rm /root/.profile
+    [ $(wc -l < /root/.profile) = 0 ] && rm /root/.profile
 }
 
 nuser() {
