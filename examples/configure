@@ -47,8 +47,6 @@ if VBOX; then
     echo vboxvideo >> /etc/modules-load.d/virtualbox.conf
 fi
 
-fi
-
 # Other softwares
 pacman -S openssh vim git archey3 wget zip unzip
 
