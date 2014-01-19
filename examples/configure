@@ -5,6 +5,9 @@ set -e
 . "$(dirname "$0")/../arch-configure.sh"
 
 NUSER=arch
+GRAPH=true
+VBOX=false
+WORK=false
 
 # Clean configure autorun
 cleanconfigure
@@ -34,3 +37,45 @@ nuser -m
 pacman -S yajl
 aur package-query
 aur yaourt
+
+if VBOX; then
+    # VirtualBox utils
+    pacman -S virtualbox-guest-utils
+
+    echo vboxguest >> /etc/modules-load.d/virtualbox.conf
+    echo vboxsf >> /etc/modules-load.d/virtualbox.conf
+    echo vboxvideo >> /etc/modules-load.d/virtualbox.conf
+fi
+
+fi
+
+# Other softwares
+pacman -S openssh vim git archey3 wget zip unzip
+
+if GRAPH; then
+    # Graphical environment
+    pacman -S alsa-utils
+    pacman -S xorg-server xorg-xrdb
+    pacman -S ttf-dejavu
+
+    pacman -S slim slim-themes
+    systemctl enable slim
+    sed -i "/current_theme/s/default/archlinux/g" /etc/slim.conf
+
+    pacman -S i3-wm i3status dmenu
+    pacman -S rxvt-unicode
+    pacman -S gtk-engines
+
+    pacman -S firefox
+    pacman -S scrot
+    nuserx yaourt sublime-text-dev
+    pacman -S xclip
+
+    if WORK; then
+        pacman -S chromium flashplugin
+        pacman -S zathura zathura-pdf-mupdf
+    fi
+fi
+
+# Final reboot
+reboot
