@@ -5,22 +5,110 @@ set -e
 . "$(dirname "$0")/../arch-configure.sh"
 
 NUSER=arch
-GRAPH=true
-VBOX=false
-WORK=false
+
+yaourt() {
+    pacman -S yajl
+    aur package-query
+    aur yaourt
+}
+
+
+nvidia() {
+    pacman -S xf86-video-nouveau
+}
+
+slim() {
+    pacman -S slim slim-themes
+    systemctl enable slim
+    sed -i "/current_theme/s/default/archlinux/g" /etc/slim.conf
+}
+
+vbox_guest() {
+    pacman -S virtualbox-guest-utils
+    echo vboxguest >> /etc/modules-load.d/virtualbox.conf
+    echo vboxsf >> /etc/modules-load.d/virtualbox.conf
+    echo vboxvideo >> /etc/modules-load.d/virtualbox.conf
+    modprobe vboxguest vboxsf vboxvideo
+}
+
+vbox_host() {
+    pacman -S virtualbox
+    echo vboxdrv >> /etc/modules-load.d/virtualbox.conf
+    modprobe vboxdrv
+
+    # VirtualBox graphical interface
+    #pacman -S qt4
+}
+
+vagrant() {
+    vbox_host
+    nuserx yaourt vagrant
+}
+
+work() {
+    pacman -S chromium
+    pacman -S zathura zathura-pdf-mupdf
+}
+
+graph() {
+    #nvidia
+
+    #pacman -S xorg-server xorg-xrdb
+    #pacman -S ttf-dejavu
+    #pacman -S alsa-utils
+
+    #slim
+
+    #pacman -S i3-wm i3status dmenu
+    #pacman -S rxvt-unicode
+    #pacman -S gtk-engines
+
+    #pacman -S firefox
+    #pacman -S flashplugin
+    
+    # Firefox support for MP3
+    #pacman -S gstreamer0.10-ugly-plugins
+
+    #pacman -S scrot
+    #pacman -S xclip
+
+    #nuserx yaourt sublime-text-dev
+
+    # Work softwares
+    #work
+}
+
+softwares() {
+    #vbox_guest
+    #yaourt
+
+    #pacman -S tmux
+    #pacman -S openssh
+    #pacman -S vim
+    #pacman -S git
+    #pacman -S archey3
+    #pacman -S wget
+    #pacman -S zip unzip
+    #pacman -S weechat
+
+    #vagrant
+
+    # Graphical interface
+    #graph
+}
 
 # Clean configure autorun
 cleanconfigure
 
 # DHCP
-systemctl enable dhcpcd
-dhcpcd
+dhcp
 
 # Hostname
 hostnamectl set-hostname arch
 
 # Locale
 localectl set-keymap fr
+localectl set-x11-keymap fr pc105 oss terminate:ctrl_alt_bksp
 localectl set-locale LANG=en_US.UTF-8
 
 # Time
@@ -30,50 +118,15 @@ timedatectl set-timezone Europe/Paris
 pacman -S ntp
 timedatectl set-ntp 1
 
+# Remove motherfucking PC beep
+echo "blacklist pcspkr" >> /etc/modprobe.d/blacklist.conf
+rmmod pcspkr
+
 # User with home
 nuser -m
 
-# Yaourt
-pacman -S yajl
-aur package-query
-aur yaourt
-
-if VBOX; then
-    # VirtualBox utils
-    pacman -S virtualbox-guest-utils
-
-    echo vboxguest >> /etc/modules-load.d/virtualbox.conf
-    echo vboxsf >> /etc/modules-load.d/virtualbox.conf
-    echo vboxvideo >> /etc/modules-load.d/virtualbox.conf
-fi
-
-# Other softwares
-pacman -S openssh vim git archey3 wget zip unzip
-
-if GRAPH; then
-    # Graphical environment
-    pacman -S alsa-utils
-    pacman -S xorg-server xorg-xrdb
-    pacman -S ttf-dejavu
-
-    pacman -S slim slim-themes
-    systemctl enable slim
-    sed -i "/current_theme/s/default/archlinux/g" /etc/slim.conf
-
-    pacman -S i3-wm i3status dmenu
-    pacman -S rxvt-unicode
-    pacman -S gtk-engines
-
-    pacman -S firefox
-    pacman -S scrot
-    nuserx yaourt sublime-text-dev
-    pacman -S xclip
-
-    if WORK; then
-        pacman -S chromium flashplugin
-        pacman -S zathura zathura-pdf-mupdf
-    fi
-fi
+# Install softwares
+softwares
 
 # Final reboot
 reboot

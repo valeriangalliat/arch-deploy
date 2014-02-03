@@ -19,6 +19,9 @@ FUNCTIONS
     Cleans the autorun script in '/root/.profile'. If the file is empty after
     removing the autorun script, it will be removed.
 
+*dhcp*::
+    Enables and starts DHCP service.
+
 *nuser*::
     Creates the new user.
 

@@ -10,6 +10,14 @@ cleanconfigure() {
     [ $(wc -l < /root/.profile) = 0 ] && rm /root/.profile
 }
 
+dhcp() {
+    systemctl enable dhcpcd
+    dhcpcd
+
+    # Sometimes DHCP needs more time
+    sleep 5
+}
+
 nuser() {
     useradd "$@" "$NUSER"
     passwd "$NUSER"
