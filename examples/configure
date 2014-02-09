@@ -4,6 +4,7 @@ set -e
 
 . "$(dirname "$0")/../arch-configure.sh"
 
+HOST=arch
 NUSER=arch
 
 yaourt() {
@@ -12,9 +13,12 @@ yaourt() {
     aur yaourt
 }
 
+video() {
+    # Nvidia
+    #pacman -S xf86-video-nouveau
 
-nvidia() {
-    pacman -S xf86-video-nouveau
+    # ATI
+    #pacman -S xf86-video-ati
 }
 
 slim() {
@@ -50,18 +54,30 @@ work() {
     pacman -S zathura zathura-pdf-mupdf
 }
 
+weechat() {
+    # Required for notification plugin
+    #pacman -S python2
+    #nuserx yaourt python2-notify2
+
+    pacman -S weechat
+}
+
 graph() {
-    #nvidia
+    video
 
     #pacman -S xorg-server xorg-xrdb
     #pacman -S ttf-dejavu
     #pacman -S alsa-utils
 
+    # Display manager
     #slim
 
     #pacman -S i3-wm i3status dmenu
     #pacman -S rxvt-unicode
     #pacman -S gtk-engines
+
+    # Notification engine
+    #pacman -S dunst
 
     #pacman -S firefox
     #pacman -S flashplugin
@@ -71,6 +87,9 @@ graph() {
 
     #pacman -S scrot
     #pacman -S xclip
+
+    # Provides Vim with X11 clipboard support
+    #pacman -S gvim
 
     #nuserx yaourt sublime-text-dev
 
@@ -82,6 +101,9 @@ softwares() {
     #vbox_guest
     #yaourt
 
+    # User can reboot for example
+    #pacman -S polkit
+
     #pacman -S tmux
     #pacman -S openssh
     #pacman -S vim
@@ -89,12 +111,17 @@ softwares() {
     #pacman -S archey3
     #pacman -S wget
     #pacman -S zip unzip
-    #pacman -S weechat
 
+    #weechat
     #vagrant
 
     # Graphical interface
     #graph
+}
+
+beep_again_i_dare_you_i_double_dare_you_motherfucker() {
+    echo "blacklist pcspkr" >> /etc/modprobe.d/blacklist.conf
+    rmmod pcspkr
 }
 
 # Clean configure autorun
@@ -104,7 +131,7 @@ cleanconfigure
 dhcp
 
 # Hostname
-hostnamectl set-hostname arch
+hostnamectl set-hostname "$HOST"
 
 # Locale
 localectl set-keymap fr
@@ -119,8 +146,7 @@ pacman -S ntp
 timedatectl set-ntp 1
 
 # Remove motherfucking PC beep
-echo "blacklist pcspkr" >> /etc/modprobe.d/blacklist.conf
-rmmod pcspkr
+#beep_again_i_dare_you_i_double_dare_you_motherfucker
 
 # User with home
 nuser -m
