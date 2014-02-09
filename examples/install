@@ -4,11 +4,21 @@ set -e
 
 . "$(dirname "$0")/../arch-install.sh"
 
+#PART=/dev/sda5
+LABEL=arch
+
+share() {
+    mkdir "$MNT/share"
+    #mount /dev/sda6 "$MNT/share"
+    #mount.ntfs /dev/sda6 "$MNT/share"
+}
+
 # Disk setup
 fdisk /dev/sda
-mkfs.ext4 /dev/sda1
-e2label /dev/sda1 arch
-mount /dev/sda1 "$MNT"
+mkfs.ext4 "$PART"
+e2label "$PART" "$LABEL"
+mount "$PART" "$MNT"
+#share
 
 # Mirrorlist
 mirrorlist FR
@@ -26,7 +36,7 @@ locale en_US.UTF-8
 linux
 
 # Install bootloader
-syslinuxi sda1
+syslinuxi "$PART"
 
 # Copy program directory
 cp -R "$(dirname "$0")/.." "$MNT/root/arch-deploy"
