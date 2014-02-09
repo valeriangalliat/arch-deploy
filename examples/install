@@ -26,6 +26,9 @@ mirrorlist FR
 # Install base system
 bootstrap base base-devel
 
+# NTFS support
+#bootstrap ntfs-3g
+
 # Make fstab with labels
 fstab -L
 
