@@ -15,8 +15,8 @@ directory.
 
 I recommend setting the `-e` `sh` option.
 
-Example
--------
+Examples
+--------
 
 Watch the `examples` directory for the scripts I use to deploy my Arch Linux
 typical environment.
