@@ -1,7 +1,7 @@
-Arch Deploy
+arch-deploy
 ===========
 
-Automate installation and configuration of an Arch Linux system.
+> Automate installation and configuration of an Arch Linux system.
 
 Description
 -----------
